@@ -1,0 +1,31 @@
+<%-include("partials/header.ejs")%>
+<div id = "container3">
+<% if (locals.name) {%>
+<h1 id = "name"><%=name%></h1>
+<%} else{%>
+<h1>Click Below to Get Your Korean Name</h1>
+<%}%>
+</div>
+<div id = "container2">
+    <form action="/newname" method = "POST">
+        <input type = "submit" value = "Generate Name" id = "choose">
+    </form>
+    <form action = "/return" method = "POST">
+        <input type = "submit" value = "Change Gender" id = "choose">
+    </form>
+    <form action = "/like" method = "POST">
+        <input type = "hidden" value = "<%=name%>" name="name">
+        <input type = "submit" value = "Save Name" id = "choose">
+    </form>
+    <form action = "/sound" method = "GET">
+        <input type = "hidden" value = "<%=name%>" name="name">
+        <input type = "submit" value = "Hear Name" id = "choose">
+    </form>
+</div>
+
+<h2 id="saved-title">The current names you've liked:</h2>
+    <ul id = "bulletpoints">
+        <% for (let i = 0; i < nameList.length; i++) { %>
+            <li><%= nameList[i] %></li>
+        <% } %>
+    </ul>
